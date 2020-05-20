@@ -14,11 +14,11 @@ export class HomePage {
   creds : CredenciaisDTO = {
     email: "",
     senha: ""
-  }
+  };
 
   constructor(
     public navCtrl: NavController, 
-    public menu: MenuController, 
+    public menu: MenuController,
     public auth: AuthService) {
 
   }
@@ -26,31 +26,30 @@ export class HomePage {
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
+    
   ionViewDidLeave() {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.auth.refreshToken()
-      .subscribe(response =>{
+      .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
         this.navCtrl.setRoot('CategoriasPage');
-      }, 
-      error => {});
+      },
+      error => {});  
   }
 
   login() {
     this.auth.authenticate(this.creds)
-      .subscribe(response =>{
+      .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
         this.navCtrl.setRoot('CategoriasPage');
-      }, 
-      error => {});
- 
+      },
+      error => {});    
   }
-
-  signup(){
+ 
+  signup() {
     this.navCtrl.push('SignupPage');
   }
-
 }

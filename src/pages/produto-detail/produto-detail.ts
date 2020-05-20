@@ -16,9 +16,9 @@ export class ProdutoDetailPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public produtoService: ProdutoService,
-    public cartService : CartService) {
+    public cartService: CartService) {
   }
 
   ionViewDidLoad() {
@@ -39,7 +39,7 @@ export class ProdutoDetailPage {
       error => {});
   }
 
-  addToCart(produto : ProdutoDTO){
+  addToCart(produto: ProdutoDTO) {
     this.cartService.addProduto(produto);
     this.navCtrl.setRoot('CartPage');
   }

@@ -15,18 +15,18 @@ export class ProdutosPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public produtoService: ProdutoService) {
   }
 
   ionViewDidLoad() {
     let categoria_id = this.navParams.get('categoria_id');
-    this.produtoService.findByCategoria( categoria_id )
-    .subscribe(response => {
-      this.items = response ['content'];
-      this.loadImageUrls();
-    }, 
-    error => {});
+    this.produtoService.findByCategoria(categoria_id)
+      .subscribe(response => {
+        this.items = response['content'];
+        this.loadImageUrls();
+      },
+      error => {});
   }
 
   loadImageUrls() {
@@ -38,9 +38,9 @@ export class ProdutosPage {
         },
         error => {});
     }
-  }
-  
+  }  
+
   showDetail(produto_id : string) {
-    this.navCtrl.push('ProdutoDetailPage', {produto_id : produto_id});
+    this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
   }
 }

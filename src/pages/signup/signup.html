@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]= "formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
@@ -31,7 +31,7 @@
     </ion-list>
 
     <ion-item>
-      <ion-label stacked>CPF ou CNPJ*</ion-label>
+      <ion-label stacked>CPF ou CNPJ</ion-label>
       <ion-input formControlName="cpfOuCnpj" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.cpfOuCnpj.dirty && formGroup.controls.cpfOuCnpj.errors" margin-left>Valor inválido</p>
