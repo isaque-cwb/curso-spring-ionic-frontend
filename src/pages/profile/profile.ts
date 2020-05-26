@@ -45,9 +45,6 @@ export class ProfilePage {
   }
 
   getImageIfExists() {
-
-    this.cameraOn = true;
-
     this.clienteService.getImageFromBucket(this.cliente.id)
     .subscribe(response => {
       this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
@@ -56,6 +53,9 @@ export class ProfilePage {
   }
 
   getCameraPicture() {
+
+    this.cameraOn = true;
+
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -64,12 +64,9 @@ export class ProfilePage {
     }
     
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
      this.picture = 'data:image/png;base64,' + imageData;
      this.cameraOn = false;
     }, (err) => {
-    
     });
   }
 }

@@ -14,7 +14,6 @@ import { PedidoService } from '../../services/domain/pedido.service';
   templateUrl: 'order-confirmation.html',
 })
 export class OrderConfirmationPage {
-  [x: string]: any;
 
   pedido: PedidoDTO;
   cartItems: CartItem[];
@@ -67,7 +66,6 @@ export class OrderConfirmationPage {
       .subscribe(response => {
         this.cartService.createOrClearCart();
         this.codpedido = this.extractId(response.headers.get('location'));
-        
       },
       error => {
         if (error.status == 403) {

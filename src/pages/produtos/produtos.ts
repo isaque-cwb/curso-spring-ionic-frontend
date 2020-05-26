@@ -9,7 +9,6 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
 @Component({
   selector: 'page-produtos',
   templateUrl: 'produtos.html',
-  
 })
 export class ProdutosPage {
 
@@ -54,12 +53,12 @@ export class ProdutosPage {
         },
         error => {});
     }
-  }
+  }  
 
   showDetail(produto_id : string) {
     this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
   }
-  
+
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Aguarde..."
@@ -67,7 +66,7 @@ export class ProdutosPage {
     loader.present();
     return loader;
   }
-  
+
   doRefresh(refresher) {
     this.page = 0;
     this.items = [];
@@ -83,6 +82,5 @@ export class ProdutosPage {
     setTimeout(() => {
       infiniteScroll.complete();
     }, 1000);
-
   }
 }

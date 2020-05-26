@@ -6,13 +6,12 @@ import { ClienteService } from '../../services/domain/cliente.service';
 import { PedidoDTO } from '../../models/pedido.dto';
 import { CartService } from '../../services/domain/cart.service';
 
-
 @IonicPage()
 @Component({
-  selector: 'page-pick-adress',
-  templateUrl: 'pick-adress.html',
+  selector: 'page-pick-address',
+  templateUrl: 'pick-address.html',
 })
-export class PickAdressPage {
+export class PickAddressPage {
 
   items: EnderecoDTO[];
 
@@ -23,7 +22,8 @@ export class PickAdressPage {
     public navParams: NavParams,
     public storage: StorageService,
     public clienteService: ClienteService,
-    public cartService: CartService) {}
+    public cartService: CartService) {
+  }
 
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
@@ -38,7 +38,7 @@ export class PickAdressPage {
             cliente: {id: response['id']},
             enderecoDeEntrega: null,
             pagamento: null,
-            items : cart.items.map(x => {return {quantidade: x.quantidade, produto: {id: x.produto.id}}})
+            itens : cart.items.map(x => {return {quantidade: x.quantidade, produto: {id: x.produto.id}}})
           }
         },
         error => {
@@ -54,8 +54,6 @@ export class PickAdressPage {
 
   nextPage(item: EnderecoDTO) {
     this.pedido.enderecoDeEntrega = {id: item.id};
-    this.navCtrl.push('PaymentPage', {
-      pedido: this.pedido
-    });
+    this.navCtrl.push('PaymentPage', {pedido: this.pedido});
   }
 }
